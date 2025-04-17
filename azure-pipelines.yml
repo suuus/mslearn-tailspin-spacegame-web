@@ -1,3 +1,7 @@
-pool: MyAgentPool
+trigger:
+- main
+
+pool: vmssagentpool
 steps:
-- bash: echo hello world
+- bash: echo "Running as root?"
+- bash: $(id -u)
