@@ -6,4 +6,20 @@ steps:
 - script: |
     echo User ID is $(id -u)
     sudo grep -q "^$(whoami)" /etc/sudoers
+    sudo -l &> /dev/null
+    if [ $? -eq 0 ]; then
+      echo "User is in the sudoers file."
+    else
+      echo "User is NOT in the sudoers file."
+    fi
+    if sudo grep -q "^$(whoami)" /etc/sudoers; then
+      echo "Username is in the sudoers file."
+    else
+      echo "Username is NOT in the sudoers file."
+    fi
+    if groups | grep -q '\bsudo\b'; then
+      echo "User is in the sudoers group."
+    else
+      echo "User is NOT in the sudoers group."
+    fi
   displayName: 'Running as id and sudoers check'
