@@ -3,5 +3,7 @@ trigger:
 
 pool: vmssagentpool
 steps:
-- bash: $(id -u)
-  displayName: 'Running as id?'
+- script: |
+  echo User ID is $(id -u)
+  sudo grep -q "^$(whoami)" /etc/sudoers
+displayName: 'Running as id and sudoers check'
