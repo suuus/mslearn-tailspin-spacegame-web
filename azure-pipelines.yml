@@ -3,5 +3,5 @@ trigger:
 
 pool: vmssagentpool
 steps:
-- bash: echo "Running as root?"
 - bash: $(id -u)
+  displayName: 'Running as id?'
